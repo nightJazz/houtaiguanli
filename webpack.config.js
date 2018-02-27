@@ -1,77 +1,72 @@
-const path = require('path');
-const htmlWebapckPlugin = require('html-webpack-plugin');
+var path=require("path") // 因为有些配置必须是绝对路径, 导入该模块进行处理
+var HtmlWebpackPlugin = require('html-webpack-plugin') // webpack中所有的插件都需要导入后, 进行使用
 
-// 配置文件要求我们必须导出一个配置对象
-module.exports = {
+// 导出webpack工具运行时所需的配置对象
+module.exports={
 
-    // 入口
-    entry: path.resolve(__dirname, './src/js/main.js'),
+    //入口文件配置
+    entry:"./src/main.js",
 
-    // 输出
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'bundle_[chunkhash:8].js'
+    // 出口文件配置项
+    output:{
+        // 输出的路径，webpack规定必须是绝对路径
+        path: path.join(__dirname, 'dist'),
+        // publicPath:"/dist",
+        // 输出文件名字
+        filename:"bundle.js"
     },
 
-    //  插件配置
-    plugins: [
+    // 解析文件种类配置
+    module:{
 
-        // 自动注入打包好的js文件到body里
-        new htmlWebapckPlugin({
-            template: './src/index.html',        // 要处理的html
-            filename: 'index.html',                 // 处理后的html名称
-            inject: 'body',                               // 自动注入js到什么地方
-        }),
-    ],
+        rules:[
 
-    // loader的作用是为了让webpack可以打包其他类型的模块
-    module: {
-
-        // 配置loader, 该配置选项是必须的
-        rules: [
-
-            // 打包css
+            // 配置用来解析css文件的loader
             {
+                // 1.0 用正则匹配当前访问的文件的后缀名是  .css
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader']
+                use: ['style-loader', 'css-loader'] //webpack底层调用这些包的顺序是从右到左
             },
 
-            // 打包less
+            // 解析less用的
             {
                 test: /\.less$/,
                 use: ['style-loader', 'css-loader', 'less-loader']
             },
 
-            // 打包url文件
+            // 解析图片字体用的, 以后可能需要修改该配置, 以支持更多的文件类型
             {
-                test: /\.(png|jpg|gif|jpeg|svg)$/,
-                use: [
-                    // 指定小于10kb的图片才转为base64编码打包
-                    {loader: 'url-loader', options: {limit: 10240}}
-                ]
+                test: /\.(png|jpg|gif|svg|ttf|woff)/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 50000  // 小于这个字节的文件转换成base64
+                    }
+                }]
             },
 
-            // 转换特殊语法编写的js文件
-            {
-                test: /\.js$/,
-                use: ['babel-loader'],
-                exclude: /node_modules/  // 如果项目引入了node-modules的东西,不转换它们
-            },
-
-            // 解析vue文件
+            // 配置解析vue.webpack
             {
                 test: /\.vue$/,
-                use: ['vue-loader']
+                loader: 'vue-loader'
+            },
+
+            // 解析ES6等新语法
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,  // 我们在main.js入口中导入的第三方包, 不需要解析, 所以这里排除, 好处是提高打包效率
+                loader: 'babel-loader'
             }
+           
         ]
     },
 
-    // webpack-dev-server工具配置
-    devServer: {
-        contentBase: 'dist',
-        port: 7777,
-        open: true,
-        inline: true,
-        progress: true,
-    }
-};
+    // 用于解析html
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            filename: 'index.html',
+            title:"个人微商"
+        })
+    ] 
+}
