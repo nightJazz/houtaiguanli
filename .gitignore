@@ -2,6 +2,7 @@
 node_modules
 dist
 .*
+#这是个测试
 # 不忽略的文件
 !.gitignore
 !.babelrc
