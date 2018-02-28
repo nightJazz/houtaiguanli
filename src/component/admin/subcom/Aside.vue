@@ -1,6 +1,6 @@
 <template>
     <div>
-        公共
+        公共左侧
     </div>
 </template>
 

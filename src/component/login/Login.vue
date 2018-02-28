@@ -45,10 +45,12 @@ export default {
         login(){
             //发送post请求
             this.$http.post(this.$api.login,this.ruleForm2).then((res)=>{
+                // console.log(res);
                 if(res.data.status==0){
                     this.$alert("登录成功",'正在跳转',{
                          callback:()=> {
                               // console.log(123);
+                              localStorage.setItem('name',res.data.message.uname)
                              this.$router.push({name:'admin'})
                            
                         }
