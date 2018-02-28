@@ -16,6 +16,8 @@ import api,{ domain } from './js/api.js'
 //如果需要全局使用，需要把它放进原型
 import axios from 'axios'
 
+//引入les文件
+import './less/index.less'
 // axios.get(domain + api.logout).then(()=>console.log('登出'));
 
 // 配置默认域名, 这样请求的时候就不用在url里加域名了
