@@ -1,5 +1,7 @@
 <template>
-   <router-view></router-view>
+    <div>
+        公共
+    </div>
 </template>
 
 <script>

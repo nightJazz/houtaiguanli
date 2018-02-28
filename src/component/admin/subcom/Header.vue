@@ -1,6 +1,6 @@
 <template>
     <div>
-        相册
+        公共头部
     </div>
 </template>
 

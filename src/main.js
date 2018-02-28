@@ -7,7 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 //引入主组件app.vue
 import App from './component/App.vue'
 import Router from './router/index'
-import Header from './component/subcom/Header.vue'
+
 // 导入编译CSss
 import 'normalize.css'
 
