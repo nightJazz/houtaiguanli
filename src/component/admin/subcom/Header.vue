@@ -4,11 +4,11 @@
         <el-dropdown>
             <i class="el-icon-arrow-down el-icon-caret-bottom"></i>
             <span class="el-dropdown-link" @command="handleCommand">
-                功能
+                个人中心
             </span>
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command='a'>修改密码</el-dropdown-item>
-                <el-dropdown-item command='c' divided>退出登录</el-dropdown-item>
+                <el-dropdown-item command='b' divided>退出登录</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
     </div>
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         handleCommand(command){
-            
+
         }
     }
 };
@@ -31,7 +31,7 @@ export default {
 
 <style scoped lang='less'>
     .header{
-        float: right;
+        text-align: right;
         font-size:18px;
         line-height: 60px;
         &_font{
