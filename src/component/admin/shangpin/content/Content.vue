@@ -1,6 +1,6 @@
 <template>
     <div>
-        购物车
+        评论详情
     </div>
 </template>
 

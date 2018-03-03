@@ -13,6 +13,7 @@
                  <!-- 后台管理子页面 -->
                 <el-main>
                     <router-view></router-view>
+                   
                 </el-main>
             </el-container>
         </el-container>
@@ -26,7 +27,8 @@ import Aside from "./subcom/Aside.vue";
 export default {
   components: {
     appHeader: Header,
-    appAside: Aside
+    appAside: Aside,
+   
   }
 };
 </script>
