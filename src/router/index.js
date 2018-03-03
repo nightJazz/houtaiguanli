@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 
 //商品路由配置
 const Shangpin=[
-    {name:'shangpinDatail',path:'shangpin/datail',component:ShangpinDatail},
+    {name:'shangpinDatail',path:'shangpin/datail/:id',component:ShangpinDatail},
     {name:'shangpinList',path:'shangpin/list',component:shangpinList},
     {name:'shangpinContent',path:'shangpin/content',component:shangpinContent}
 ]
